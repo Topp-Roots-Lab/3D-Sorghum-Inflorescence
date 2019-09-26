@@ -8,4 +8,4 @@ Mao Li*, Mon-Ray Shao*, Dan Zeng, Tao Ju, Elizabeth A. Kellogg, Christopher N. T
 
 Code is implemented by Mao Li (maoli0923@gmail.com, github:maoli0923) and Dan Zeng (danzeng8@gmail.com).
 
-Please download all folders and direct to ".../IdentifyStemAndBranches/IdentifyStemAndBranches/third_party/boost/include/boost/" and extract all from 'compressed.zip' file first. 
+Please download all folders and direct to ".../IdentifyStemAndBranches/third_party/boost/include/boost/" and extract all from 'compressed.zip' file first. 
