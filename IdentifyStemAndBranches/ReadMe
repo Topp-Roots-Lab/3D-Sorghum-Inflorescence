@@ -1,0 +1,40 @@
+Dan Zeng, danzeng@wustl.edu
+
+The executable can be found in the Release folder, and the .sln folder can be found in the root directory. Individual source files can be found in the IdentifyStemAndBranches folder.
+
+Usage:
+
+graphTopoSimplification --inFile=[Input .ply file] --outFile=[output .ply file] --outMeasureFile=[output measurement file] -upperRadius=[decimal value] -lowerRadius=[decimal value] --minBranchSize=[Min # of branch vertices] --maxBranchSize=[Max # of branch vertices] --tipAngle=[angle in degrees]
+
+Explanation of parameters:
+Required:
+--inFile : Input .ply file
+--outFile: Output .ply file
+--outMeasureFile : Output .csv file with branch traits for every branch
+--upperRadius : Upper threshold of radius for stem identification. Should be slightly below the maximum radius of the stem along the skeleton (default 10.0).
+--lowerRadius : Lower threshold of radius for stem identification. Should be close to the minimum radius of the stem along the skeleton (default 1.0).
+
+Recommended:
+--minBranchSize : Lower threshold for min branch size, in # of vertices (default 200)
+--maxBranchSize : Upper threshold for max branch size, in # of vertices (default 900)
+--tortuosity : Upper threshold for tortuosity, which equals skeleton distance / straight line euclidean distance from junction point to end of branch (default 2.5)
+--tipAngle : Upper threshold for tip angle. Branches with greater tip angle are excluded (default 120)
+
+Optional (typically not needed)
+--radiusTolerance: How far from stem to continue to search for junction points, as starting points to begin branch search, in number of vertices (default 1.2)
+--emergenceAngle: Upper threshold for emergence angle. Branches with greater emergence angle are excluded (default 180)
+--curvatureWindow: Window size used to compute curvature, in number of vertices (default 30)
+
+Output:
+1. .ply file determined by --outFile parameter. This is the subset of the skeleton which have been identified as part of the stem and branches. In the .ply file, each vertex has a "compType" attribute indicating whether if it is part of the stem (valued 0) or part of a branch (indexed > 0).
+2. .csv file with individual and aggregate branch measurements. For each branch, these traits include the coordinate of the junction point along the stem from which each branch emerges, the skeletal length of the branch, straight line distance, emergence angle, tip angle, the distance of the branch's emergence point from the base of the stem.
+
+The required third party libraries are already included in the third_party directory:
+boost
+ply
+alglib
+
+Building from source:
+To build the code from source, open the .sln file using Visual Studio 2015 or 2017. 1. Go to Project Properties and under General Configuration Properties set the target platform version to 8.1 and the Platform ToolSet to Visual Studio 2015 - Windows XP (v140_xp). 
+2. Go to VC++ Directories and under Include directories add all of the include directories for the third party libraries. Under Library Directories, add all of the lib directories for the third party libraries.
+3. Set to Release Mode for an x86 architecture. Build the solution to produce an executable file in the Release folder.
